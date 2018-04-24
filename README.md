@@ -190,13 +190,16 @@ ext {
 ```
 ### Clean Build and Publish on Maven
    * Open Android Studio Terminal and write this command
-     ./gradlew clean build bintrayUpload and pressed enter.
+```java
+./gradlew clean build bintrayUpload
+```   
    * Follow this image
      <img src="https://github.com/umeshbsa/android-library-publish-maven-jcenter/blob/master/screen/s8.png"/>
    * After upload android library, you can see on bintray. Follow this image
      <img src="https://github.com/umeshbsa/android-library-publish-maven-jcenter/blob/master/screen/s7.png"/>
    * Click on Add to jCenter. Fill required field and finish it. After 1 day you will be get email to success of publish android library.
-   * You can search your android library by this way `https://bintray.com/bintray/jcenter?filterByPkgName=resume-file-upload`
+   * You can search your android library by this way<br/>
+     https://bintray.com/bintray/jcenter?filterByPkgName=resume-file-upload<br/>
      If it is find then your library successfully upload.
    * To used this library put on android app gradle dependency file.
 ```java
