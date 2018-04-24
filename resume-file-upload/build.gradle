@@ -1,0 +1,109 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+android {
+    compileSdkVersion rootProject.COMPILE_SDK_VERSION
+    defaultConfig {
+        minSdkVersion rootProject.MIN_SDK_VERSION
+        targetSdkVersion rootProject.COMPILE_SDK_VERSION
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$rootProject.ANDROID_SUPPORT_VERSION"
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+group = 'com.app.resume'
+version = '1.0.3'
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            name 'Umesh Kumar'
+            description 'A library for finding out whether someone is on the list or the nice list'
+            url 'https://github.com/bsaumesh/umesh-jcenter-androidlib'
+            inceptionYear '2018'
+
+            packaging 'aar'
+            groupId 'com.app.resume'
+            artifactId 'resume-file-upload'
+            version '1.0.3'
+
+            licenses {
+                license {
+                    name 'The MIT License (MIT)'
+                    url 'https://opensource.org/licenses/MIT'
+                }
+            }
+            scm {
+                connection 'https://github.com/bsaumesh/umesh-jcenter-androidlib.git'
+                url 'https://github.com/bsaumesh/umesh-jcenter-androidlib'
+
+            }
+            developers {
+                developer {
+                    id = 'bsaumesh'
+                    name 'Umesh Kumar'
+                }
+            }
+        }
+    }
+}
+
+
+// Bintray
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+
+bintray {
+
+    user = properties.getProperty('user')
+    key = properties.getProperty('key')
+    configurations = ['archives']
+    pkg {
+        repo = 'maven'
+        name = 'resume-file-upload'
+        userOrg = 'bsaumesh'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/bsaumesh/umesh-jcenter-androidlib.git'
+        publish = true
+        version {
+            name = '1.0.3'
+            desc = 'This is updated version 1.0.3'
+            released = new Date()
+            vcsTag = 'v1.0.3'
+        }
+    }
+}
+
