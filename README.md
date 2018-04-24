@@ -1,11 +1,12 @@
 ### Android Library Publish on Maven/jCenter Repository
 This is a example of how to publish my own android library on maven or jcenter and i can used in android app gradle dependency.
 
-- [Create Bintray Account](#create-bi)
-- [Package Setup - Layer](#package-setup---layer)
-- [License](#license)
+- [Create Account](#create-account)
+- [Set up Android Library Project](#set-up-android-library-project)
+- [Clean Build and Publish on Maven](#clean-build-and-publish-on-maven)
+- [License](#licence)
 
-### Bintray Account
+### Create Account
   * Go to bintray site <br/>
     https://bintray.com/
   * Click on link<br/>`For an Open Source Account`<br/>`Sign Up Here`.<br/>
@@ -18,9 +19,9 @@ This is a example of how to publish my own android library on maven or jcenter a
   * Click on `Add New Repository`. Fill all data. Follow this image
     <img src="https://github.com/umeshbsa/android-library-publish-maven-jcenter/blob/master/screen/s3.png"/>
   * After created your repository, you will create package so click on `Add New Package` Follow this image.
-    <img src="https://github.com/umeshbsa/android-library-publish-maven-jcenter/blob/master/screen/s4.png.png"/>
+    <img src="https://github.com/umeshbsa/android-library-publish-maven-jcenter/blob/master/screen/s4.png"/>
     Fill all data to create package. Follow this image.
-    <img src="https://github.com/umeshbsa/android-library-publish-maven-jcenter/blob/master/screen/s5.png.png"/>  
+    <img src="https://github.com/umeshbsa/android-library-publish-maven-jcenter/blob/master/screen/s5.png"/>  
   * After create your package, you must be remember of repository name(maven1), package name(resume-file-upload) and your username(bsaumesh).
     because it will be needed in future to create android library project.
     This is finish of bintray side.
@@ -103,7 +104,7 @@ This is a example of how to publish my own android library on maven or jcenter a
                  }
                  developers {
                      developer {
-                         id = 'umeshbsa'
+                         id = 'umeshbsa' //bintray username
                          name 'Umesh Kumar'
                      }
                  }
@@ -119,14 +120,15 @@ This is a example of how to publish my own android library on maven or jcenter a
          // user and key, fetch from local.properties file.
          // Follow this step
          /*
-             sdk.dir=/home/umesh/Android/Sdk
-             user=umeshbsa // your username of bitray account
-             key=dd3e540bf673436cee35fc839607fe6252c117cc // bintray key.
-             // To find this key follow this step-
-             // 1. Go to edit profile and click 'Api Key' from list. 
-                2. Put password and show key. copy and paste here.
+           sdk.dir=/home/umesh/Android/Sdk
+           user=umeshbsa // your username of bitray account
+           key=dd3e540bf673436cee35fc839607fe6252c117cc // bintray key.
+             
+           To find this key follow this step-
+           1. Go to edit profile and click 'Api Key' from list. 
+           2. Put password and show key. copy and paste here.
                 
-          Note : Do not this
+           Note : Do not this
            user="umeshbsa"
            key="dd3e540bf673436cee35fc839607fe6252c117cc"
           */
@@ -152,7 +154,6 @@ This is a example of how to publish my own android library on maven or jcenter a
 ```
  * Add this code in Root gradle
 ```java
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
 
     repositories {
@@ -187,10 +188,22 @@ ext {
 }
 
 ```
-### Clean Build and Publish on Maven.
+### Clean Build and Publish on Maven
    * Open Android Studio Terminal and write this command
-     
-     
+     ./gradlew clean build bintrayUpload and pressed enter.
+   * Follow this image
+     <img src="https://github.com/umeshbsa/android-library-publish-maven-jcenter/blob/master/screen/s8.png"/>
+   * After upload android library, you can see on bintray. Follow this image
+     <img src="https://github.com/umeshbsa/android-library-publish-maven-jcenter/blob/master/screen/s7.png"/>
+   * Click on Add to jCenter. Fill required field and finish it. After 1 day you will be get email to success of publish android library.
+   * You can search your android library by this way `https://bintray.com/bintray/jcenter?filterByPkgName=resume-file-upload`
+     If it is find then your library successfully upload.
+   * To used this library put on android app gradle dependency file.
+```java
+   compile 'com.app.resume:resume-file-upload:1.0.0'
+
+```
+   
 #### Licence
 
     Copyright 2018 Umesh Kumar
