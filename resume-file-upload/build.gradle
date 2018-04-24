@@ -92,9 +92,9 @@ bintray {
     key = properties.getProperty('key')
     configurations = ['archives']
     pkg {
-        repo = 'maven'
-        name = 'resume-file-upload'
-        userOrg = 'bsaumesh'
+        repo = 'maven' // must be same as on bintray repo name
+        name = 'resume-file-upload' // must be same of library name as bintray
+        userOrg = 'bsaumesh' // this is username of bintray account
         licenses = ['MIT']
         vcsUrl = 'https://github.com/bsaumesh/umesh-jcenter-androidlib.git'
         publish = true
