@@ -43,21 +43,21 @@ artifacts {
     archives sourcesJar
 }
 
-group = 'com.app.resume'
-version = '1.0.3'
+group = 'com.app.resume' // library package name
+version = '1.0.4'
 
 install {
     repositories.mavenInstaller {
         pom.project {
             name 'Umesh Kumar'
             description 'A library for finding out whether someone is on the list or the nice list'
-            url 'https://github.com/bsaumesh/umesh-jcenter-androidlib'
+            url 'https://github.com/umeshbsa/android-library-publish-maven-jcenter'
             inceptionYear '2018'
 
             packaging 'aar'
-            groupId 'com.app.resume'
-            artifactId 'resume-file-upload'
-            version '1.0.3'
+            groupId 'com.app.resume' //package name of your library
+            artifactId 'resume-file-upload' //Library name and must be same as package name on bintray
+            version '1.0.4'
 
             licenses {
                 license {
@@ -66,43 +66,53 @@ install {
                 }
             }
             scm {
-                connection 'https://github.com/bsaumesh/umesh-jcenter-androidlib.git'
-                url 'https://github.com/bsaumesh/umesh-jcenter-androidlib'
+                connection 'https://github.com/umeshbsa/android-library-publish-maven-jcenter.git'
+                url 'https://github.com/umeshbsa/android-library-publish-maven-jcenter'
 
             }
             developers {
                 developer {
-                    id = 'bsaumesh'
+                    id = 'bsaumesh' //bintray username
                     name 'Umesh Kumar'
                 }
             }
         }
     }
 }
-
-
 // Bintray
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 
 bintray {
-
+    // Fetch from local.properties file
+    // Please follow this step
+    /*
+     sdk.dir=/home/umesh/Android/Sdk
+     user=umeshbsa// bintray username
+     key=dd3e540bf673436cee35fc839607fe6252c117cc // Bintray profile key
+     // To find this key follow this step-
+      1. Go to Edit Profile and click on 'Api Key' from list
+      2. Fill your account password and show key, copy and paste on local.properties file.
+      Note- Please do not this.
+     user="umeshbsa"
+     key="dd3e540bf673436cee35fc839607fe6252c117cc" this is not accepted by bintray.
+     */
     user = properties.getProperty('user')
     key = properties.getProperty('key')
     configurations = ['archives']
     pkg {
-        repo = 'maven'
-        name = 'resume-file-upload'
-        userOrg = 'bsaumesh'
+        repo = 'maven' // must be same as on bintray repo name
+        name = 'resume-file-upload' // must be same of library name as bintray
+        userOrg = 'bsaumesh' // this is username of bintray account
         licenses = ['MIT']
         vcsUrl = 'https://github.com/bsaumesh/umesh-jcenter-androidlib.git'
         publish = true
         version {
-            name = '1.0.3'
-            desc = 'This is updated version 1.0.3'
+            name = '1.0.4'
+            desc = 'This is updated version 1.0.4'
             released = new Date()
-            vcsTag = 'v1.0.3'
+            vcsTag = 'v1.0.4'
         }
     }
 }
