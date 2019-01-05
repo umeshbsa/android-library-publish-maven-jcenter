@@ -25,6 +25,11 @@ allprojects {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':resume-file-upload')
     implementation "com.android.support:appcompat-v7:$rootProject.ANDROID_SUPPORT_VERSION"
+
+    //Remove this line when we upload successfully on jCenter
+    //implementation project(':resume-file-upload')
+
+    // Here is gradle file with full package name
+    implementation "com.app.resume:resume-file-upload:1.0.5"
 }
